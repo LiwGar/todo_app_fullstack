@@ -1,27 +1,17 @@
 import express from 'express'; 
+import { findTasks, findOneTask, createTask, updateTask, deleteTask } from './../services/task.service.js';
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.send('all tasks');
-});
+router.get('/', findTasks);
 
-router.get('/:id', (req, res) => {
-    res.send('one task');
-});
+router.get('/:id', findOneTask);
 
-router.post('/', (req, res) => {
-    res.send('task created');
-});
+router.post('/', createTask);
 
+router.patch('/:id', updateTask);
 
-router.patch('/:id', (req, res) => {
-    res.send('task updated');
-});
-
-router.delete('/:id', (req, res) => {
-    res.send('task deleted');
-});
+router.delete('/:id', deleteTask);
 
 
 export { router as taskRouter };

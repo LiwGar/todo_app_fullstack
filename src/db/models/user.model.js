@@ -1,28 +1,31 @@
-import mongoose from "mongoose";
 
-const UserSchema = mongoose.Schema({
-  username: {
-    type: String, 
-    required: true, 
-    trim: true,
+
+const UserSchema = {
+  name: {
+    allowNull: false,
+    type: DataTypes.STRING,
+  },
+  lastName: {
+    allowNull: false,
+    type: DataTypes.STRING,
+    field: 'last_name',
   },
   email: {
-    type: String, 
-    required: true,
-    trim: true, 
+    allowNull: false,
+    type: DataTypes.STRING,
     unique: true,
   },
   password: {
-    type: String, 
-    required: true,
+    allowNull: false,
+    type: DataTypes.STRING
   },
   createdAt: {
-    type: Date, 
-    default: Date.now,
+    allowNull: false,
+    type: DataTypes.DATE,
+    field: 'create_at',
+    defaultValue: Sequelize.NOW
   }
-});
+};
 
-const User = mongoose.model('User', UserSchema);
 
-export default User; 
 

@@ -7,6 +7,10 @@ const port = process.env.PORT || 4000;
 
 app.use(express.json());
 
+app.get('/', (req, res) => {
+    res.send('Hello, my server in express');
+});
+
 app.get('/new_route', (req, res) => {
     res.send('This is a new route');
 });

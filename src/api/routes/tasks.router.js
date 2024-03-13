@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-    res.send('one tasks');
+    res.send('one task');
 });
 
 router.post('/', (req, res) => {
@@ -16,11 +16,11 @@ router.post('/', (req, res) => {
 
 
 router.patch('/:id', (req, res) => {
-    res.send('task created');
+    res.send('task updated');
 });
 
 router.delete('/:id', (req, res) => {
-    res.send('task created');
+    res.send('task deleted');
 });
 
 

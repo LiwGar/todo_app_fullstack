@@ -5,4 +5,4 @@ function routerApi(app) {
     app.use('/api/v1', router);
 }
 
-export default routerApi; 
+export { routerApi }; 

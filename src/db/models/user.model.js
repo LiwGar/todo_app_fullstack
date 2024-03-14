@@ -1,5 +1,7 @@
 import { Model, DataTypes, Sequelize } from 'sequelize';
 
+const USER_TABLE = 'users';
+
 const UserSchema = {
   name: {
     allowNull: false,
@@ -40,8 +42,8 @@ class User extends Model {
       timestamps: false
     }
   }
-}
+};
 
-export { UserSchema, USER_TABLE, User}
+export { USER_TABLE, UserSchema, User };
 
 

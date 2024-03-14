@@ -1,7 +1,9 @@
-import { Pool } from 'pg';
-import { config } from './../config/config';
+import pkg from 'pg';
+import { config } from './../config/config.js';
 
-const pool = new Pool({
+const { Pool } = pkg;
+
+const getConnection = new Pool({
   user: config.dbUser,
   host: config.dbHost,
   database: config.dbName,
@@ -12,9 +14,9 @@ const pool = new Pool({
   connectionTimeoutMillis: 5000,
 });
 
-pool.on('error', (error, client) => {
+getConnection.on('error', (error, client) => {
   console.error('Unexpected connection pool error', error);
   process.exit(-1);
 });
 
-export { pool };
+export { getConnection };

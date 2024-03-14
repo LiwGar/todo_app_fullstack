@@ -1,5 +1,9 @@
-const findTasks = (req, res) => {
-  res.send('all tasks');
+import {  getConnection } from './../../libs/postgres.js';
+
+const findTasks = async () => {
+  const client = await getConnection();
+  const rta = await client.query('SELECT * FROM tasks')
+  return rta.rows;
 };
 
 const findOneTask = (req, res) => {

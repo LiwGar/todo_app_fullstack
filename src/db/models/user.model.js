@@ -1,4 +1,4 @@
-
+import { Model, DataTypes, Sequelize } from 'sequelize';
 
 const UserSchema = {
   name: {
@@ -27,5 +27,21 @@ const UserSchema = {
   }
 };
 
+class User extends Model {
+  static associate() {
+    //
+  }
+
+  static config(sequelize) {
+    return {
+      sequelize,
+      tableName: USER_TABLE,
+      modelName: 'User',
+      timestamps: false
+    }
+  }
+}
+
+export { UserSchema, USER_TABLE, User}
 
 

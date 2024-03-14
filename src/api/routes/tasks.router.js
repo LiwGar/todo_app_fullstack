@@ -3,7 +3,15 @@ import { findTasks, findOneTask, createTask, updateTask, deleteTask } from './..
 
 const router = express.Router();
 
-router.get('/', findTasks);
+router.get('/', async (req, res) => {
+  try {
+    const tasks = await findTasks();
+    res.json(tasks);
+  } catch (error) {
+    console.error('Error fetching tasks:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 router.get('/:id', findOneTask);
 

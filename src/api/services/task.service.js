@@ -1,8 +1,8 @@
-import {  getConnection } from './../../libs/postgres.js';
+import {  pool } from './../../libs/postgres.pool.js';
 
 const findTasks = async () => {
-  const client = await getConnection();
-  const rta = await client.query('SELECT * FROM tasks')
+  const query = 'SELECT * FROM tasks';
+  const rta = await pool.query(query)
   return rta.rows;
 };
 

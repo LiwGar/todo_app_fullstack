@@ -1,9 +1,9 @@
-import {  pool } from './../../libs/postgres.pool.js';
+import {  sequelizeConnection } from './../../libs/sequelize.js';
 
 const findTasks = async () => {
   const query = 'SELECT * FROM tasks';
-  const rta = await pool.query(query)
-  return rta.rows;
+  const [data] = await sequelizeConnection.query(query)
+  return data;
 };
 
 const findOneTask = (req, res) => {

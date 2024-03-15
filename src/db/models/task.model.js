@@ -1,4 +1,5 @@
 import { Model, DataTypes, Sequelize } from "sequelize";
+import { CATEGORY_TABLE } from './category.model.js';
 
 const TASK_TABLE = "tasks";
 

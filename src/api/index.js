@@ -1,5 +1,6 @@
 import express from 'express';
 import { routerApi } from './routes/index.js';
+import  { logErrors, errorHandler, boomErrorHandler } from './middlewares/error.handler.js';
 
 const app = express();
 
@@ -16,6 +17,12 @@ app.get('/new_route', (req, res) => {
 });
 
 routerApi(app);
+
+app.use(logErrors);
+app.use(boomErrorHandler);
+app.use(errorHandler);
+
+
 
 app.listen(port, () => {
     console.log(`The API is listening on the port ${port}`);

@@ -3,14 +3,16 @@ import { Model, DataTypes, Sequelize } from 'sequelize';
 const USER_TABLE = 'users';
 
 const UserSchema = {
-  name: {
+  id: {
     allowNull: false,
-    type: DataTypes.STRING,
+    autoIncrement: true,
+    primaryKey: true,
+    type: DataTypes.INTEGER,
   },
-  lastName: {
+  fullName: {
     allowNull: false,
     type: DataTypes.STRING,
-    field: 'last_name',
+    field: 'full_name',
   },
   email: {
     allowNull: false,

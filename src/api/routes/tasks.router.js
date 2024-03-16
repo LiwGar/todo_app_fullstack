@@ -37,6 +37,7 @@ validatorHandler(createTaskSchema, 'body'),
     next(error);
   }
 });
+
 router.patch('/:id', 
 validatorHandler(getTaskSchema, 'params'),
 validatorHandler(updateTaskSchema, 'body'),

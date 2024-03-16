@@ -1,20 +1,23 @@
-const findUsers = (req, res) => {
-  res.send('all Users');
-};
+import { User }  from './../../db/models/user.model.js';
 
-const findOneUser = (req, res) => {
+async function findUsers() {
+  const rta = await User.findAll();
+  return rta;
+}
+
+function findOneUser(req, res) {
   res.send('one User');
 };
 
-const createUser = (req, res) => {
+function createUser(req, res) {
   res.send('User created');
 };
 
-const updateUser = (req, res) => {
+function updateUser(req, res) {
   res.send('User updated');
 };
 
-const deleteUser = (req, res) => {
+function deleteUser(req, res) {
   res.send('User deleted');
 };
 

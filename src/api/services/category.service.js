@@ -1,6 +1,9 @@
-const findCategories = (req, res) => {
-  res.send('all Categories');
-};
+import { Category }  from './../../db/models/category.model.js';
+
+async function findCategories() {
+  const rta = await Category.findAll();
+  return rta;
+}
 
 const findOneCategory = (req, res) => {
   res.send('one Category');

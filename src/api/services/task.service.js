@@ -1,15 +1,15 @@
 import boom from '@hapi/boom';
-import {  sequelizeConnection } from './../../libs/sequelize.js';
+import {  sequelize } from './../../libs/sequelize.js';
 
 const findTasks = async () => {
   const query = 'SELECT * FROM tasks';
-  const [data] = await sequelizeConnection.query(query)
+  const [data] = await sequelize.query(query)
   return data;
 };
 
 const findOneTask = async (id) => {
   const query = 'SELECT * FROM tasks WHERE id = ?';
-  const [data] = await sequelizeConnection.query(query, [id]);
+  const [data] = await sequelize.query(query, [id]);
   if(!data || data.length === 0) {
     throw boom.notFound('Task not found');
   }

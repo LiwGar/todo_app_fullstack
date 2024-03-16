@@ -1,5 +1,7 @@
 import express from 'express'; 
 import { findTasks, findOneTask, createTask, updateTask, deleteTask } from './../services/task.service.js';
+import { validatorHandler } from './../middlewares/validator.handler.js';
+import { createTaskSchema, getTaskSchema, updateTaskSchema } from './../schemas/task.schema.js';
 
 const router = express.Router();
 
@@ -12,7 +14,9 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', 
+validatorHandler(getTaskSchema, 'params'),
+  async (req, res, next) => {
   try {
     const { id } = req.params;
     const task = await findOneTask(id);
@@ -22,7 +26,9 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.post('/', async (req, res, next) => {
+router.post('/', 
+validatorHandler(createTaskSchema, 'body'),
+  async (req, res, next) => {
   try {
     const body = req.body;
     const newTask = await createTask(body);
@@ -31,7 +37,10 @@ router.post('/', async (req, res, next) => {
     next(error);
   }
 });
-router.patch('/:id', async (req, res, next) => {
+router.patch('/:id', 
+validatorHandler(getTaskSchema, 'params'),
+validatorHandler(updateTaskSchema, 'body'),
+  async (req, res, next) => {
   try {
     const { id } = req.params;
     const body = req.body;
@@ -42,7 +51,9 @@ router.patch('/:id', async (req, res, next) => {
   }
 });
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', 
+validatorHandler(getTaskSchema, 'params'),  
+  async (req, res, next) => {
   try {
     const { id } = req.params;
     const task = await deleteTask(id);

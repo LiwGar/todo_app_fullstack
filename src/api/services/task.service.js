@@ -16,8 +16,7 @@ const findOneTask = async (id) => {
   return data[0];
 };
 
-const createTask = (req, res) => {
-  res.send('task created');
+const createTask = (data) => {
 };
 
 const updateTask = (req, res) => {

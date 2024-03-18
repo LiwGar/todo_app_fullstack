@@ -1,7 +1,7 @@
-import express from 'express';
-import { taskRouter } from './tasks.router.js';
-import { userRouter } from './users.router.js';
-import { categoryRouter } from './categories.router.js';
+const express = require('express');
+const taskRouter = require('./tasks.router.js');
+const userRouter = require('./users.router.js');
+const categoryRouter = require('./categories.router.js');
 
 
 function routerApi(app) {
@@ -12,4 +12,4 @@ function routerApi(app) {
     router.use('/categories', categoryRouter);
 }
 
-export { routerApi }; 
+module.exports = routerApi;

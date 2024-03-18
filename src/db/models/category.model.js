@@ -1,4 +1,4 @@
-import { Model, DataTypes, Sequelize } from "sequelize";
+const { Model, DataTypes, Sequelize } = require('sequelize');
 
 const CATEGORY_TABLE = "categories";
 
@@ -37,4 +37,4 @@ class Category extends Model {
   }
 }
 
-export { CATEGORY_TABLE, CategorySchema, Category };
+module.exports = { CATEGORY_TABLE, CategorySchema, Category };

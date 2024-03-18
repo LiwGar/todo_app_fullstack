@@ -1,7 +1,7 @@
-import express from 'express'; 
-import { TaskService } from './../services/task.service.js';
-import { validatorHandler } from './../middlewares/validator.handler.js';
-import { createTaskSchema, getTaskSchema, updateTaskSchema } from './../schemas/task.schema.js';
+const express = require('express');
+const TaskService = require('./../services/task.service.js');
+const  validatorHandler = require('./../middlewares/validator.handler.js');
+const { createTaskSchema, getTaskSchema, updateTaskSchema } = require('./../schemas/task.schema.js');
 
 const router = express.Router();
 const service = new TaskService(); 
@@ -66,4 +66,4 @@ validatorHandler(getTaskSchema, 'params'),
 });
 
 
-export { router as taskRouter };
+module.exports = router;

@@ -1,34 +1,38 @@
-import boom from '@hapi/boom';
-import { Category }  from './../../db/models/category.model.js';
+const boom = require('@hapi/boom');
+const { Category }  = require('./../../db/models/category.model.js');
 
-async function createCategory(data) {
-  const newCategory = await Category.create(data);
-  return newCategory;
-};
+class CategoryService {
+  constructor(){};
 
-async function findCategories() {
-  const rta = await Category.findAll();
-  return rta;
-};
-
-async function findOneCategory(id) {
-  const category = await Category.findByPk(id);
-  if (!category){
-    throw boom.notFound('Category not found');
+  async createCategory(data) {
+    const newCategory = await Category.create(data);
+    return newCategory;
   };
-  return category;
-};
+  
+  async findCategories() {
+    const rta = await Category.findAll();
+    return rta;
+  };
+  
+  async findOneCategory(id) {
+    const category = await Category.findByPk(id);
+    if (!category){
+      throw boom.notFound('Category not found');
+    };
+    return category;
+  };
+  
+  async updateCategory(id, changes) {
+    const category = await this.findOneCategory(id);
+    const rta = await category.update(changes);
+    return rta;
+  }; 
+  
+  async deleteCategory(id) {
+    const category = await this.findOneCategory(id);
+    await category.destroy();
+    return { id };
+  };
+}
 
-async function updateCategory(id, changes) {
-  const category = await findOneCategory(id);
-  const rta = await category.update(changes);
-  return rta;
-}; 
-
-async function deleteCategory(id) {
-  const category = await findOneCategory(id);
-  await category.destroy();
-  return { id };
-};
-
-export { findCategories, findOneCategory, createCategory, updateCategory, deleteCategory };
+module.exports = CategoryService;

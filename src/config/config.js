@@ -1,5 +1,4 @@
-import dotenv from 'dotenv';
-dotenv.config();
+require('dotenv').config();
 
 const config = {
   env: process.env.NODE_ENV || 'development',
@@ -13,4 +12,4 @@ const config = {
   dbName: process.env.DB_NAME
 }
 
-export { config };
+module.exports = { config }; 

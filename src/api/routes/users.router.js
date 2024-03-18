@@ -1,13 +1,14 @@
-import express from 'express'; 
-import { findUsers, findOneUser, createUser, updateUser, deleteUser } from './../services/user.service.js';
-import { validatorHandler } from './../middlewares/validator.handler.js';
-import { createUserSchema, getUserSchema, updateUserSchema } from './../schemas/user.schema.js';
+const express = require('express');
+const UserService = require('./../services/user.service.js');
+const  validatorHandler = require('./../middlewares/validator.handler.js');
+const { createUserSchema, getUserSchema, updateUserSchema } = require('./../schemas/user.schema.js');
 
 const router = express.Router();
+const service = new UserService;
 
 router.get('/', async (req, res, next) => {
   try {
-    const users = await findUsers();
+    const users = await service.findUsers();
     res.json(users);
   } catch (error) {
     next(error);
@@ -19,7 +20,7 @@ validatorHandler(getUserSchema, 'params'),
   async (req, res, next) => {
   try {
     const { id } = req.params;
-    const user = await findOneUser(id);
+    const user = await service.findOneUser(id);
     res.json(user);
   } catch (error) {
     next(error);
@@ -31,7 +32,7 @@ validatorHandler(createUserSchema, 'body'),
   async (req, res, next) => {
   try {
     const body = req.body;
-    const newUser = await createUser(body);
+    const newUser = await service.createUser(body);
     res.status(201).json(newUser);
   } catch (error) {
     next(error);
@@ -46,7 +47,7 @@ validatorHandler(updateUserSchema, 'body'),
   try {
     const { id } = req.params;
     const body = req.body;
-    const user = await updateUser(id, body);
+    const user = await service.updateUser(id, body);
     res.json(user);
   } catch (error) {
     next(error);
@@ -58,11 +59,11 @@ validatorHandler(getUserSchema, 'params'),
   async (req, res, next) => {
   try {
     const { id } = req.params;
-    const user = await deleteTask(id);
+    const user = await service.deleteUser(id);
     res.json(user);
   } catch (error) {
     next(error);
   }
 });
 
-export { router as userRouter };
+module.exports = router;

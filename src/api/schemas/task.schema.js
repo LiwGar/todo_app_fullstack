@@ -1,4 +1,4 @@
-import Joi from 'joi';
+const Joi = require('joi');
 
 const id = Joi.number().integer();
 const title = Joi.string().min(3);
@@ -21,4 +21,4 @@ const updateTaskSchema = Joi.object({
   categoryId: categoryId
 });
 
-export { createTaskSchema, getTaskSchema, updateTaskSchema };
+module.exports = { createTaskSchema, getTaskSchema, updateTaskSchema };

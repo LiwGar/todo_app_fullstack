@@ -1,5 +1,5 @@
-import { Model, DataTypes, Sequelize } from "sequelize";
-import { CATEGORY_TABLE } from './category.model.js';
+const { Model, DataTypes, Sequelize } = require('sequelize');
+const { CATEGORY_TABLE } = require('./category.model.js');
 
 const TASK_TABLE = "tasks";
 
@@ -52,4 +52,4 @@ class Task extends Model {
   }
 }
 
-export { TASK_TABLE, TaskSchema, Task };
+module.exports = { TASK_TABLE, TaskSchema, Task };

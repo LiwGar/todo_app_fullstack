@@ -1,6 +1,6 @@
-import { UserSchema, User } from './user.model.js';
-import { TaskSchema, Task } from './task.model.js';
-import { CategorySchema, Category } from './category.model.js';
+const { UserSchema, User } = require('./user.model.js');
+const { TaskSchema, Task } = require('./task.model.js');
+const { CategorySchema, Category } = require('./category.model.js');
 
 function setupModels(sequelize) {
   User.init(UserSchema, User.config(sequelize));
@@ -8,4 +8,4 @@ function setupModels(sequelize) {
   Category.init(CategorySchema, Category.config(sequelize));
 }
 
-export { setupModels };
+module.exports = setupModels ;

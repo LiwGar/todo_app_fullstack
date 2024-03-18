@@ -1,6 +1,4 @@
-// import pkg from 'pg';
-
-// const { Client } = pkg;
+// const { Client } = require('pg');
 
 // async function getConnection() {
 //   const client = new Client({
@@ -14,4 +12,4 @@
 //   return client;
 // }
 
-// export { getConnection };
+// module.exports = getConnection;

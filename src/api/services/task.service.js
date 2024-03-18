@@ -1,8 +1,7 @@
-import boom from '@hapi/boom';
-import { Task }  from './../../db/models/task.model.js';
+const boom = require('@hapi/boom');
+const { Task } = require('./../../db/models/task.model.js');
 
 class TaskService {
-
   constructor() {}; 
 
   async createTask(data) {
@@ -36,4 +35,4 @@ class TaskService {
   };
 }
 
-export { TaskService };
+module.exports = TaskService;

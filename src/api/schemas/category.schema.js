@@ -1,4 +1,4 @@
-import Joi from 'joi';
+const Joi = require('joi');
 
 const id = Joi.number().integer();
 const name = Joi.string().min(3).max(21);
@@ -15,5 +15,5 @@ const updateCategorySchema = Joi.object({
   name: name,
 });
 
-export { createCategorySchema, getCategorySchema, updateCategorySchema};
+module.exports = { createCategorySchema, getCategorySchema, updateCategorySchema }
 

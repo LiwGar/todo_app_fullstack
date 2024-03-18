@@ -1,7 +1,5 @@
-import pkg from 'pg';
-import { config } from './../config/config.js';
-
-const { Pool } = pkg;
+const { Pool } = require('pg');
+const { config } = require('./../config/config.js');
 
 const USER = encodeURIComponent(config.dbUser);
 const PASSWORD = encodeURIComponent(config.dbPassword)
@@ -11,4 +9,4 @@ const pool = new Pool({
   connectionString: URI
 });
 
-export { pool };
+module.exports = pool;

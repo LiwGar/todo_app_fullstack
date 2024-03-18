@@ -1,6 +1,6 @@
-import { config } from './../config/config.js';
+const { config } = require('./../config/config.js');
 
-const dbConfig = {
+module.exports = {
   development: {
     url: config.dbUrl,
     dialect: 'postgres',
@@ -16,5 +16,4 @@ const dbConfig = {
   }
 };
 
-export { dbConfig };
 

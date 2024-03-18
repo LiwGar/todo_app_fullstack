@@ -1,30 +1,39 @@
 import boom from '@hapi/boom';
-import {  sequelize } from './../../libs/sequelize.js';
+import { Task }  from './../../db/models/task.model.js';
 
-const findTasks = async () => {
-  const query = 'SELECT * FROM tasks';
-  const [data] = await sequelize.query(query)
-  return data;
-};
+class TaskService {
 
-const findOneTask = async (id) => {
-  const query = 'SELECT * FROM tasks WHERE id = ?';
-  const [data] = await sequelize.query(query, [id]);
-  if(!data || data.length === 0) {
-    throw boom.notFound('Task not found');
-  }
-  return data[0];
-};
+  constructor() {}; 
 
-const createTask = (data) => {
-};
+  async createTask(data) {
+    const newTask = await Task.create(data);
+    return newTask;
+  };
+  
+  async findTasks() {
+    const rta = await Task.findAll();
+    return rta;
+  };
+  
+  async findOneTask(id) {
+    const task = await Task.findByPk(id);
+    if (!task){
+      throw boom.notFound('Task not found');
+    };
+    return task;
+  };
+  
+  async updateTask(id, changes) {
+    const task = await this.findOneTask(id);
+    const rta = await task.update(changes);
+    return rta;
+  }; 
+  
+  async deleteTask(id) {
+    const task = await this.findOneTask(id);
+    await task.destroy();
+    return { id };
+  };
+}
 
-const updateTask = (req, res) => {
-  res.send('task updated');
-};
-
-const deleteTask = (req, res) => {
-  res.send('task deleted');
-};
-
-export { findTasks, findOneTask, createTask, updateTask, deleteTask };
+export { TaskService };

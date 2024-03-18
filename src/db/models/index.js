@@ -4,8 +4,8 @@ import { CategorySchema, Category } from './category.model.js';
 
 function setupModels(sequelize) {
   User.init(UserSchema, User.config(sequelize));
-  User.init(TaskSchema, Task.config(sequelize));
-  User.init(CategorySchema, Category.config(sequelize));
+  Task.init(TaskSchema, Task.config(sequelize));
+  Category.init(CategorySchema, Category.config(sequelize));
 }
 
 export { setupModels };

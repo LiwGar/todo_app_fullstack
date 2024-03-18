@@ -1,13 +1,14 @@
 import express from 'express'; 
-import { findTasks, findOneTask, createTask, updateTask, deleteTask } from './../services/task.service.js';
+import { TaskService } from './../services/task.service.js';
 import { validatorHandler } from './../middlewares/validator.handler.js';
 import { createTaskSchema, getTaskSchema, updateTaskSchema } from './../schemas/task.schema.js';
 
 const router = express.Router();
+const service = new TaskService(); 
 
 router.get('/', async (req, res, next) => {
   try {
-    const tasks = await findTasks();
+    const tasks = await service.findTasks();
     res.json(tasks);
   } catch (error) {
     next(error);
@@ -19,7 +20,7 @@ validatorHandler(getTaskSchema, 'params'),
   async (req, res, next) => {
   try {
     const { id } = req.params;
-    const task = await findOneTask(id);
+    const task = await service.findOneTask(id);
     res.json(task);
   } catch (error) {
     next(error);
@@ -31,7 +32,7 @@ validatorHandler(createTaskSchema, 'body'),
   async (req, res, next) => {
   try {
     const body = req.body;
-    const newTask = await createTask(body);
+    const newTask = await service.createTask(body);
     res.status(201).json(newTask);
   } catch (error) {
     next(error);
@@ -45,7 +46,7 @@ validatorHandler(updateTaskSchema, 'body'),
   try {
     const { id } = req.params;
     const body = req.body;
-    const task = await updateTask(id, body);
+    const task = await service.updateTask(id, body);
     res.json(task);
   } catch (error) {
     next(error);
@@ -57,7 +58,7 @@ validatorHandler(getTaskSchema, 'params'),
   async (req, res, next) => {
   try {
     const { id } = req.params;
-    const task = await deleteTask(id);
+    const task = await service.deleteTask(id);
     res.json(task);
   } catch (error) {
     next(error);

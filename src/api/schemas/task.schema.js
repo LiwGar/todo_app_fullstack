@@ -3,7 +3,7 @@ import Joi from 'joi';
 const id = Joi.number().integer();
 const title = Joi.string().min(3);
 const description = Joi.string().min(10);
-const categoryId = Joi.number().integer();
+const categoryId = Joi.string().min(3);
 
 const createTaskSchema = Joi.object({
   title: title.required(),

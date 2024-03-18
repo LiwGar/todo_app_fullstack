@@ -1,24 +1,34 @@
+import boom from '@hapi/boom';
 import { Category }  from './../../db/models/category.model.js';
+
+async function createCategory(data) {
+  const newCategory = await Category.create(data);
+  return newCategory;
+};
 
 async function findCategories() {
   const rta = await Category.findAll();
   return rta;
-}
-
-const findOneCategory = (req, res) => {
-  res.send('one Category');
 };
 
-const createCategory = (req, res) => {
-  res.send('Category created');
+async function findOneCategory(id) {
+  const category = await Category.findByPk(id);
+  if (!category){
+    throw boom.notFound('Category not found');
+  };
+  return category;
 };
 
-const updateCategory = (req, res) => {
-  res.send('Category updated');
-};
+async function updateCategory(id, changes) {
+  const category = await findOneCategory(id);
+  const rta = await category.update(changes);
+  return rta;
+}; 
 
-const deleteCategory = (req, res) => {
-  res.send('Category deleted');
+async function deleteCategory(id) {
+  const category = await findOneCategory(id);
+  await category.destroy();
+  return { id };
 };
 
 export { findCategories, findOneCategory, createCategory, updateCategory, deleteCategory };

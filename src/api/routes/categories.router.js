@@ -1,5 +1,5 @@
 import express from 'express'; 
-import { findCategories, findOneCategory, createCategory, updateCategory, deleteCategory } from './../services/category.service.js'
+import { findCategories, findOneCategory, createCategory, updateCategory, deleteCategory } from './../services/category.service.js';
 import { validatorHandler } from './../middlewares/validator.handler.js';
 import { createCategorySchema, getCategorySchema, updateCategorySchema} from './../schemas/category.schema.js';
 
